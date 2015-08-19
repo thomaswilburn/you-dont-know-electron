@@ -1,3 +1,5 @@
+// Simple Hapi app to distribute the host/mobile UI
+
 var hapi = require("hapi");
 var inert = require("inert");
 var path = require("path");
@@ -32,6 +34,7 @@ server.route({
   }
 });
 
+//JS files are dynamically built using Browserify, which makes development easier but loads slower
 server.route({
   path: "/js/{file}",
   method: "GET",
@@ -45,6 +48,7 @@ server.route({
   }
 });
 
+//clients need to be able to get the server's IP address to connect over WebSockets
 var ip = require("ip");
 server.route({
   path: "/ip",

@@ -9,6 +9,8 @@ app.controller("host", ["$scope", function($scope) {
     
     // console.log(data);
 
+    //when new state comes in, stomp the existing object and update UI
+    //it's a very dumb client model
     if (typeof data == "string") data = JSON.parse(data);
     for (var k in data) $scope[k] = data[k];
 
