@@ -7,7 +7,12 @@
   </head>
   <body ng-app="ydke">
     <main ng-controller="buzzer">
-      <button ng-repeat="answer in question.answers" ng-click="send('answer', answer)">{{answer}}</button>
+      <label>Name</label><input ng-model="name">
+      <button ng-repeat="answer in question.answers" ng-click="send('answer', answer.text)">
+        {{answer.text}}
+      </button>
+      <div ng-if="state == 'wrong'">WRONG!</div>
+      <div ng-if="state == 'correct'">CORRECT!</div>
     </main>
     <script src="/js/client.js"></script>
   </body>

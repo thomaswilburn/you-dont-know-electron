@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width">
+    <title>You Don't Know Electron</title>
+  </head>
+  <body ng-app="ydke">
+    <main ng-controller="host">
+      <ul class="players">
+        <li ng-repeat="player in players">
+          {{player.name}} - {{player.score}}
+        </li>
+      </ul>
+
+      <section class="wait" ng-if="state.waiting">
+        Waiting for players. Scan this code to join:
+        <img ng-src="https://zxing.org/w/chart?cht=qr&chs=350x350&chld=L&choe=UTF-8&chl=http://{{state.ip}}:8888/client">
+        <button ng-click="next()">Click here to begin</button>
+      </section>
+
+      <section class="question" ng-if="state.question">
+        {{state.question}}
+      </section>
+
+      <section class="result" ng-if="state.answered">
+        Correct answer from: {{state.answered}}
+        <button ng-click="next()">Next question!</button>
+      </section>
+
+    </main>
+
+    <script src="http://localhost:8888/js/host.js"></script>
+  </body>
+</html>
