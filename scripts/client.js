@@ -26,11 +26,12 @@ app.controller("buzzer", ["$scope", "$http", function($scope, $http) {
     socket.addEventListener("message", function(event) {
       var msg = JSON.parse(event.data);
       
-      console.log(msg);
+      // console.log(msg);
       
       switch (msg.type) {
         case "question":
           $scope.question = msg.data;
+          $scope.state = null;
           break;
         case "state":
           $scope.question = null;

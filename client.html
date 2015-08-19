@@ -4,15 +4,82 @@
     <title>Client for YDKE</title>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width">
+    <style>
+[ng-cloak] {
+  display: none;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.identity {
+  flex: 0 0 50px;
+  align-item: flex-start;
+  padding: 10px;
+}
+
+.identity label {
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.identity input {
+  width: 100%;
+  border: 1px dashed #EEE;
+  font-size: 20px;
+  text-align: center;
+  font-family: monospace;
+}
+
+button {
+  flex: 1;
+  margin: 10px;
+  padding: 4px 10px;
+  font-size: 20px;
+  background: white;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, .2);
+}
+
+.result {
+  font-size: 30px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.result.correct {
+  background: #CEC;
+}
+
+.result.wrong {
+  background: #ECC;
+}
+    </style>
   </head>
-  <body ng-app="ydke">
+  <body ng-app="ydke" ng-cloak>
     <main ng-controller="buzzer">
-      <label>Name</label><input ng-model="name">
+      <div class="identity">
+        <label>Name: </label>
+        <input ng-model="name">
+      </div>
       <button ng-repeat="answer in question.answers" ng-click="send('answer', answer.text)">
         {{answer.text}}
       </button>
-      <div ng-if="state == 'wrong'">WRONG!</div>
-      <div ng-if="state == 'correct'">CORRECT!</div>
+      <div class="result wrong" ng-if="state == 'wrong'">WRONG!</div>
+      <div class="result correct" ng-if="state == 'correct'">CORRECT!</div>
+      <div class="result closed" ng-if="state == 'closed'">Okay, that's it. Ready for the next question?</div>
     </main>
     <script src="/js/client.js"></script>
   </body>

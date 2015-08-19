@@ -4,23 +4,98 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width">
     <title>You Don't Know Electron</title>
+    <style>
+[ng-cloak] { display: none; }
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+main {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  background: #CCE;
+  font-family: sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.players {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.players li {
+  flex: 1;
+  padding: 20px;
+  margin: 20px;
+  background: white;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, .2);
+}
+
+.players .name {
+  display: block;
+}
+
+.players .score {
+  display: block;
+  background: white;
+  padding: 8px;
+  font-size: 30px;
+  font-weight: bold;
+  border: 1px dashed #EEE;
+}
+
+.qr {
+  display: block;
+  margin: auto;
+  max-height: 100%;
+}
+
+button {
+  border: none;
+  background: #EEE;
+  font-size: 30px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.question {
+  font-size: 30px;
+}
+
+section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+    </style>
   </head>
-  <body ng-app="ydke">
+  <body ng-app="ydke" ng-cloak>
     <main ng-controller="host">
       <ul class="players">
         <li ng-repeat="player in players">
-          {{player.name}} - {{player.score}}
+          <span class="name">{{player.name}}</span>
+          <span class="score">{{player.score}}</span>
         </li>
       </ul>
 
       <section class="wait" ng-if="state.waiting">
-        Waiting for players. Scan this code to join:
-        <img ng-src="https://zxing.org/w/chart?cht=qr&chs=350x350&chld=L&choe=UTF-8&chl=http://{{state.ip}}:8888/client">
+        <div class="message">Waiting for players. Scan this code to join:</div>
+        <img class="qr" ng-src="https://zxing.org/w/chart?cht=qr&chs=350x350&chld=L&choe=UTF-8&chl=http://{{state.ip}}:8888/client">
         <button ng-click="next()">Click here to begin</button>
       </section>
 
-      <section class="question" ng-if="state.question">
-        {{state.question}}
+      <section class="question" ng-if="!state.answer && !state.waiting">
+        {{state.text}}
       </section>
 
       <section class="result" ng-if="state.answered">

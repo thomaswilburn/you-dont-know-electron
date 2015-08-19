@@ -18,7 +18,7 @@ var host = {
 };
 
 app.on("ready", function() {
-  var window = new BrowserWindow({ width: 800, height: 600 });
+  var window = new BrowserWindow({ width: 800, height: 800 });
   window.loadUrl("file://" + __dirname + "/host.html");
   // window.openDevTools();
   var update = function() {
@@ -38,14 +38,14 @@ app.on("ready", function() {
         this.name = msg.data
         break;
       case "answer":
-        var answer = host.question.answers.filter(function(a) { return a.correct }).pop();
-        console.log(answer, msg);
+        var question = host.questions[host.index];
+        var answer = question.answers.filter(function(a) { return a.correct }).pop();
         var correct = msg.data == answer.text;
         if (correct) {
           host.answered = self.name;
           self.score++;
           players.forEach(function(player) {
-            player.send("state", player == self ? "correct" : "wrong");
+            player.send("state", player == self ? "correct" : "closed");
           });
         } else {
           self.send("state", "wrong");
@@ -82,14 +82,12 @@ app.on("ready", function() {
 
   var nextQuestion = function() {
     host.index++;
-    host.question = host.questions[host.index];
+    var item = host.questions[host.index];
+    host.text = item ? item.question : "Game over!";
     host.answered = null;
-    if (!host.question) {
-      host.question = "Game over!";
-    }
     update();
     players.forEach(function(player) {
-      player.send("question", host.question);
+      player.send("question", host.questions[host.index]);
     });
   }
 

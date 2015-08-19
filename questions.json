@@ -1,18 +1,28 @@
 [
   {
-    "question": "Question 1",
+    "question": "You fight like a cow.",
     "answers": [
-      { "text": "A" },
-      { "text": "B", "correct": true },
-      { "text": "C" }
+      { "text": "I am rubber, you are glue." },
+      { "text": "How fitting, you fight like a dairy farmer.", "correct": true },
+      { "text": "Your MOM fights like a cow." }
     ]
   },
   {
-    "question": "Question 2",
+    "question": "As opposed to diatonic, Stevie Wonder plays this kind of harmonica:",
     "answers": [
-      { "text": 1 },
-      { "text": 2 },
-      { "text": 3, "correct": true }
+      { "text": "Adriatic" },
+      { "text": "Prismatic" },
+      { "text": "Chromatic", "correct": true },
+      { "text": "Economic" }
+    ]
+  },
+  {
+    "question": "This new ES2015 feature allows a function to be paused and continued.",
+    "answers": [
+      { "text": "ServiceWorkers" },
+      { "text": "Arrow functions" },
+      { "text": "Modules" },
+      { "text": "Generators", "correct": true }
     ]
   }
 ]
