@@ -1,0 +1,20 @@
+{
+  "name": "you-dont-know-electron",
+  "version": "1.0.0",
+  "description": "A multi-user trivia app built on Electron",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Wilburn",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "angular": "^1.4.4",
+    "async": "^1.4.2",
+    "browserify": "^11.0.1",
+    "handlebars": "^3.0.3",
+    "hapi": "^9.0.2",
+    "inert": "^3.0.1",
+    "ws": "^0.7.2"
+  }
+}

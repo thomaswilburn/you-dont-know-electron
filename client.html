@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Client for YDKE</title>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="ydke">
+    <main ng-controller="buzzer">
+      <button ng-repeat="answer in question.answers" ng-click="send('answer', answer)">{{answer}}</button>
+    </main>
+    <script src="/js/client.js"></script>
+  </body>
+</html>
